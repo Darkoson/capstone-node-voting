@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type = "text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title> Voting Application </title>
+</head>
+<body>
+    <div class="container">
+        <h1 style="padding-left: 12%; margin-top: 5rem; margin-bottom: 3rem; font-weight: bolder; color: black;"> Welcome To The Ashanti Region EC Voting App </h1>
+        <div class="row">
+            <%if (votingPolls !== "undefined" || votingPolls.length != 0){
+            votingPolls.map( vp=> {%>
+             
+                <div class="col-xl-3 col-md-6 mt-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        <%=vp.name%></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a href="/getsinglepoll/<%=vp.id%>" style="text-decoration: none; color: black;">Click to vote</a>
+                                        6
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%})
+        
+           }else{ %>
+             <h1>No votingPolls today</h1>
+           <%}%>
+        </div>
+</body>
+</html>

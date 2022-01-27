@@ -1,0 +1,104 @@
+<%- include('header'); -%>
+<div class="container">
+  <div class="row">
+
+    <!--Form for updating of the election polls-->
+      <div class="col-xl-6 col-md-6 mt-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <h3 style="justify-content: center;">Update Election Poll</h3>
+                <%  if(poll!="undefined") {%>
+                  <h2><%=poll.name%></h2>
+                <%}%>
+                <form action="/updatePoll/<%=poll.id%>" method="POST">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" name="name" value="<%=poll.name%>" placeholder="Name of Poll">
+     
+                  <label for="floatingInput">Name of Poll</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="location" name="location" value="<%=poll.location%>" placeholder="location">
+                    <label for="floatingPassword">Location</label>
+                  </div>
+                  <div class="d-grid">
+                  <input class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" value="Update" name="Update"/>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </div>
+
+
+      <!--Form for adding of candidate to the election polls-->
+      <div class="col-xl-6 col-md-6 mt-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <h3 style="justify-content: center;">Add Candidate</h3>
+              <form action="/createCandidate" method="POST">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+                  <label for="floatingInput">First Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+                  <label for="floatingInput">Last Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="politicalParty" id="politicalParty" placeholder="Polical Party">
+                   <label for="floatingInput">Political Party</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="position" id="position" placeholder="Position">
+                   <label for="floatingInput">Position</label>
+                </div>
+                <div class="form-floating mb-3" hidden>
+                  <input type="text" class="form-control" name="pollId" id="pollId" placeholder="Position" value="<%=poll.id%>" hidden>
+                   <label for="floatingInput">PollId</label>
+                </div>
+                <div class="d-grid">
+                <input class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" value="Add" name="Add"/>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container form-content">
+  <div class="card border-0 shadow rounded-3 my-5">
+      <div class="card-body p-4 p-sm-5">
+
+          
+              <h5 class="card-title text-center mb-1 fw-light fs-5 caution">Candidates</h5> <br>
+        
+              <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">Political Party</th>
+                      <th scope="col">Actions</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+                <%  if(candidates) {candidates.map( candidate => { %>
+                  <tr data-toggle="modal" data-target="#freelancer-info" style="cursor: pointer;">
+                      <td><%=candidate.firstName%></td>
+                      <td><%=candidate.lastName%></td>
+                      <td><%=candidate.politicalParty%></td>
+                      <td>
+                          
+                          
+                          <a href="" class="btn btn-danger"> Delete</a>
+                      </td>
+                  </tr>
+                  <%
+                  })}%>
+              </tbody>
+
+          </table>
+      </div>
+  </div>
+</div>
